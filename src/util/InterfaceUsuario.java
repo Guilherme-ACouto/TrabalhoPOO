@@ -1,21 +1,21 @@
-//Pacote
 package util;
-//IMPORTAÇÃO DE CLASSES
-//import modelo.Financiamento;
+
+//IMPORTAÇÃO DE BIBLIOTECAS
 import java.util.Scanner;
 
 //CRIANDO CLASSE INTERFACE USUARIO
 public class InterfaceUsuario {
-    private static Scanner scanner = new Scanner(System.in); //METODO SCANNER
+    private static Scanner scanner = new Scanner(System.in);
 
     //METODO PARA PEDIR VALOR DO IMOVEL
     public static double pedirValorImovel() {
         double valorImovel;
 
         System.out.print("\nDigite o valor do imóvel: ");
-        valorImovel = scanner.nextDouble(); //Recebe o valor digitado pelo usuário
+        valorImovel = scanner.nextDouble();
 
-        while (valorImovel <= 0) {                              //LOOP WHILE PARA VALOR POSITIVO
+        //LOOP WHILE PARA VALOR POSITIVO
+        while (valorImovel <= 0) {
             System.out.println("\n*** Valor não aceito *** ");
             System.out.println("\n*** Digite novamente ***");
 
@@ -30,12 +30,13 @@ public class InterfaceUsuario {
     public static int pedirPrazoFinanciamento() {
         int prazoFinanciamento;
 
+        //LOOP DO-WHILE PARA VALIDAR VALOR POSITIVO
         do {
             System.out.print("\nEm quantos anos quer financiar? ");
             prazoFinanciamento = scanner.nextInt();
 
 
-            if (prazoFinanciamento <= 0) {                           //LOOP DO-WHILE PARA VALIDAR VALOR POSITIVO
+            if (prazoFinanciamento <= 0) {
                 System.out.println("\n*** Prazo de financiamento não aceito *** ");
                 System.out.println("*** Digite novamente  ***");
 
@@ -57,7 +58,8 @@ public class InterfaceUsuario {
             System.out.print("\nDigite a taxa de juros anual: ");
             taxaJuros = scanner.nextDouble();
 
-            if (taxaJuros > 0) {                                    //IF PARA VALIDAR TAXA DE JUROS
+            //IF PARA VALIDAR TAXA DE JUROS
+            if (taxaJuros > 0) {
                 break;
             } else {
                 System.out.println("\n*** Taxa de juros inválida ***");

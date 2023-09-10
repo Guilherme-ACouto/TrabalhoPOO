@@ -1,20 +1,20 @@
-// IMPORTAÇÃO DE PACOTE
 package modelo;
+
 // CRIÇÃO DA CLASSE FINANCIAMENTO E SEUS ATRIBUTOS
 public class Financiamento {
     private double valorDaCasa;
     private int prazoFinanciamento;
     private double taxaJurosAnual;
 
-    //GETTER PARA ACESSAR O VALOR DO ATRIBUTO PRIVADO
+    //GETTER PARA ATRIBUTO PRIVADO
     public double getValorDaCasa (){
         return valorDaCasa;
     }
-
+    //GETTER PARA ATRIBUTO PRIVADO
     public int getPrazoFinanciamento (){
         return prazoFinanciamento;
     }
-
+    //GETTER PARA ATRIBUTO PRIVADO
     public double getTaxaJurosAnual (){
         return taxaJurosAnual;
     }
