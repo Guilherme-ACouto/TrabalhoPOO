@@ -65,9 +65,9 @@ public class Main {
                 System.out.println("º Valor do financiamento: " + currencyFormat.format(lista.calcularTotalPagamento()));
                 System.out.println("º Valor da taxa de juros: " + currencyFormat.format(lista.getTaxaJurosAnual()));
                 System.out.println("º Valor da parcela : " + currencyFormat.format(lista.calcularPagamentoMensal()));
-                System.out.println("º (1ª) Parcela com desconto: " + currencyFormat.format(((Apartamento) lista).calcularProximaParcelaComDesconto(3)));
+                System.out.println("º (1ª) Parcela com desconto: " + currencyFormat.format(((Apartamento) lista).calcularProximaParcelaComDesconto(1)));
                 System.out.println("º (2ª) Parcela com desconto: " + currencyFormat.format(((Apartamento) lista).calcularProximaParcelaComDesconto(2)));
-                System.out.println("º (3ª) Parcela com desconto: " + currencyFormat.format(((Apartamento) lista).calcularProximaParcelaComDesconto(1)));
+                System.out.println("º (3ª) Parcela com desconto: " + currencyFormat.format(((Apartamento) lista).calcularProximaParcelaComDesconto(3)));
                 System.out.println("º Vagas de garagem: " + ((Apartamento) lista).garagem() + ", vagas");
                 System.out.println("º Andar: " + ((Apartamento) lista).andar() + "º");
                 System.out.println("º Prazo de financiamento: " + lista.getPrazoFinanciamento() + ", anos ");
