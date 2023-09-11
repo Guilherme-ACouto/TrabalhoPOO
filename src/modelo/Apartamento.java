@@ -1,5 +1,9 @@
 package modelo;
 
+//IMPORTAÇÃO DE BIBLIOTECAS
+import java.text.NumberFormat;
+import java.util.Locale;
+
 // CRIANDO A CLASSE APARTAMENTO E EXTENDENDO PARA FINANCIAMENTO
 public class Apartamento extends Financiamento {
     protected int vagasGaragem;
@@ -52,5 +56,23 @@ public class Apartamento extends Financiamento {
     //MÉTODO PARA ATRIBUTO
     public int andar(){
         return numeroAndar;
+    }
+
+    //FORMATANDO PARA LINGUAGEM BR
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
+
+    //MÉTODO TOSTRING PARA IMPRESSÃO DAS INFORMAÇÕES
+    public String toString() {
+        return "\nApartamento" +
+                "\nº Valor do Apartamento: " + currencyFormat.format(getValorDaCasa()) +
+                "\nº Valor do financiamento: " + currencyFormat.format(calcularTotalPagamento()) +
+                "\nº Valor da taxa de juros: " + (getTaxaJurosAnual()) + "%" +
+                "\nº Valor da parcela: " + currencyFormat.format(calcularPagamentoMensal()) +
+                "\nº (1ª) Parcela com desconto: " + currencyFormat.format(calcularProximaParcelaComDesconto(1)) +
+                "\nº (2ª) Parcela com desconto: " + currencyFormat.format(calcularProximaParcelaComDesconto(2)) +
+                "\nº (3ª) Parcela com desconto: " + currencyFormat.format(calcularProximaParcelaComDesconto(3)) +
+                "\nº Vagas de garagem: " + garagem() + " vagas" +
+                "\nº Andar: " + andar() + "º" +
+                "\nº Prazo de financiamento: " + getPrazoFinanciamento() + " anos";
     }
 }

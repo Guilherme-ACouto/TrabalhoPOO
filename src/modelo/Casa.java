@@ -1,5 +1,9 @@
 package modelo;
 
+//IMPORTAÇÃO DE BIBLIOTECAS
+import java.text.NumberFormat;
+import java.util.Locale;
+
 // CRIANDO A CLASSE CASA E EXTENDENDO PARA FINANCIAMENTO
 public class Casa extends Financiamento {
 
@@ -59,5 +63,22 @@ public class Casa extends Financiamento {
             return 0;
         }
         return proximaParcela;
+    }
+
+    //FORMATANDO PARA LINGUAGEM BR
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
+
+    //MÉTODO TOSTRING PARA IMPRESSÃO DAS INFORMAÇÕES
+    public String toString() {
+        return "\nCasa" +
+                "\nº Valor da casa: " + currencyFormat.format(getValorDaCasa()) +
+                "\nº Valor do financiamento: " + currencyFormat.format(calcularTotalPagamento()) +
+                "\nº Valor da taxa de juros: " + (getTaxaJurosAnual()) + "%" +
+                "\nº Valor da parcela: " + currencyFormat.format(calcularPagamentoMensal()) +
+                "\nº Desconto por parcela: " + currencyFormat.format(getDescontoPorParcela()) +
+                "\nº Próxima parcela com desconto: " + currencyFormat.format(calcularProximaParcelaComDesconto()) +
+                "\nº Tamanho da casa: " + getAreaConstruida() + " Metros quadrados" +
+                "\nº Tamanho do terreno: " + getTamanhoTerreno() + " Metros quadrados" +
+                "\nº Prazo de financiamento: " + getPrazoFinanciamento() + " anos";
     }
 }

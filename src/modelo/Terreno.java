@@ -1,5 +1,9 @@
 package modelo;
 
+//IMPORTAÇÃO DE BIBLIOTECAS
+import java.text.NumberFormat;
+import java.util.Locale;
+
 // CRIANDO A CLASSE TERRENO E EXTENDENDO PARA FINANCIAMENTO
 public class Terreno extends Financiamento {
 
@@ -46,5 +50,20 @@ public class Terreno extends Financiamento {
     //MÉTODO PARA ATRIBUTO
     public String tipo(){
         return zona;
+    }
+
+    //FORMATANDO PARA LINGUAGEM BR
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
+
+    //MÉTODO TOSTRING PARA IMPRESSÃO DAS INFORMAÇÕES
+    public String toString() {
+        return "\nTerreno" +
+                "\nº Valor do terreno: " + currencyFormat.format(getValorDaCasa()) +
+                "\nº Valor do financiamento com acréscimo: " + currencyFormat.format(calcularAcrescimo()) +
+                "\nº Valor da taxa de juros: " + (getTaxaJurosAnual()) + "%" +
+                "\nº Valor da parcela: " + currencyFormat.format(calcularPagamentoMensal()) +
+                "\nº Valor do terreno sem acréscimo: " + currencyFormat.format(calcularTotalPagamentoSemAcrescimo()) +
+                "\nº Tipo de terreno: " + tipo() +
+                "\nº Prazo de financiamento: " + getPrazoFinanciamento() + " anos";
     }
 }
