@@ -12,7 +12,6 @@ public abstract class Financiamento {
         this.prazoFinanciamento = prazoFinanciamento;
         this.taxaJurosAnual = taxaJurosAnual;
     }
-
     //GETTER PARA ATRIBUTO PRIVADO
     public double getValorDaCasa (){
         return valorDaCasa;
@@ -25,7 +24,9 @@ public abstract class Financiamento {
     public double getTaxaJurosAnual (){
         return taxaJurosAnual;
     }
-
+    public void setTaxaJurosAnual(double taxaJurosAnual) {
+        this.taxaJurosAnual = taxaJurosAnual;
+    }
     // METODO ABSTRADO
     public abstract double calcularPagamentoMensal();
 
@@ -34,6 +35,4 @@ public abstract class Financiamento {
 
     // Na classe Financiamento
     public abstract String toString();
-
-
 }

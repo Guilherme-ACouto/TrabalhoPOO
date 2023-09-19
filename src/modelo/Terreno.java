@@ -14,7 +14,6 @@ public class Terreno extends Financiamento {
         super(valorDoTerreno, prazoFinanciamento, taxaJurosAnual);
         this.zona = zona;
     }
-
     // METODO PARA CALCULAR PAGAMENTO MENSAL
     public double calcularPagamentoMensal() {
         double taxaMensal = (getTaxaJurosAnual() / 12.0) / 100.0;
@@ -23,30 +22,21 @@ public class Terreno extends Financiamento {
                 (Math.pow(1 + taxaMensal, numeroPagamentos) - 1);
         return pagamentoMensal;
     }
-
     // METODO PARA CALCULAR PAGAMENTO TOTAL
     public double calcularTotalPagamento(){
         return calcularPagamentoMensal() * getPrazoFinanciamento() * 12;
     }
-
     //OVERRIDE DO MÉTODO PARA CÁLCULO DE TOTAL DE PAGAMENTO DA CLASSE PAI
     public double calcularAcrescimo() {
-
-        //RECEBE O VALOR TOTAL DA CLASSE PAI
         double total = calcularTotalPagamento();
-
-        //APLICA NO VALOR TOTAL UM ACRÉSCIMO DE 2%
         double acrescimo = total * 0.02;
         total = total + acrescimo;
-
         return total;
     }
-
     //MÉTODO PARA ATRIBUTO
     public String tipo(){
         return zona;
     }
-
     //FORMATANDO PARA LINGUAGEM BR
     NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
 

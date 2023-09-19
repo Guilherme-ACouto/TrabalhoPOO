@@ -3,7 +3,6 @@ package main;
 //IMPORTAÇÃO DE BIBLIOTECAS
 import modelo.*;
 import util.InterfaceUsuario;
-
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,24 +27,19 @@ public class Main {
         financiamentos.add(new Terreno(100, 5, 11,"Residencial"));
         financiamentos.add(new Terreno(200, 15, 8,"Comercial"));
 
-
-        //INICIANDO VARIÁVEIS
-        double totalImoveis = 0;
-        double totalFinanciamentos = 0;
-
         //FORMATANDO PARA LINGUAGEM BR
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
+
+        double totalImoveis = 0;
+        double totalFinanciamentos = 0;
 
         //FOR PARA PERCORRER A LISTA
         for (Financiamento lista : financiamentos) {
             System.out.println(lista);
 
-            //VARIÁVEL RECEBENDO OS VALORES TOTAIS DOS IMÓVEIS
-            totalImoveis += lista.getValorDaCasa();
-            //VARIÁVEL RECEBENDO OS VALORES TOTAIS DOS FINANCIAMENTOS
-            totalFinanciamentos += lista.calcularTotalPagamento();
+            totalImoveis += lista.getValorDaCasa();                 //VARIÁVEL RECEBENDO OS VALORES TOTAIS DOS IMÓVEIS
+            totalFinanciamentos += lista.calcularTotalPagamento();  //VARIÁVEL RECEBENDO OS VALORES TOTAIS DOS FINANCIAMENTOS
         }
-
         //IMPRIME VALOR TOTAL DOS IMOVEIS E TOTAL DOS FINANCIAMENTOS
         System.out.println("\nValor total de todos os imóveis: " + currencyFormat.format(totalImoveis));
         System.out.println("Valor total de todos os financiamentos: " + currencyFormat.format(totalFinanciamentos));

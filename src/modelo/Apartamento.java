@@ -15,7 +15,6 @@ public class Apartamento extends Financiamento {
         this.vagasGaragem = vagasGaragem;
         this.numeroAndar = numeroAndar;
     }
-
     // METODO PARA CALCULAR PAGAMENTO MENSAL
     public double calcularPagamentoMensal() {
         double taxaMensal = (getTaxaJurosAnual() / 12.0) / 100.0;
@@ -24,12 +23,10 @@ public class Apartamento extends Financiamento {
                 (Math.pow(1 + taxaMensal, numeroPagamentos) - 1);
         return pagamentoMensal;
     }
-
     // METODO PARA CALCULAR PAGAMENTO TOTAL
     public double calcularTotalPagamento(){
         return calcularPagamentoMensal() * getPrazoFinanciamento() * 12;
     }
-
     //MÉTODO PARA CÁLCULO DAS PRÓXIMAS 3 PARCELAS
     public double calcularProximaParcelaComDesconto(int numeroParcela) {
         double taxaDesconto = 0.0;
@@ -47,17 +44,14 @@ public class Apartamento extends Financiamento {
 
         return proximaParcela;
     }
-
     //MÉTODO PARA ATRIBUTO
     public int garagem(){
         return vagasGaragem;
     }
-
     //MÉTODO PARA ATRIBUTO
     public int andar(){
         return numeroAndar;
     }
-
     //FORMATANDO PARA LINGUAGEM BR
     NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
 
