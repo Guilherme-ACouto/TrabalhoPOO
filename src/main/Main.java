@@ -1,11 +1,9 @@
 package main;
 
 //IMPORTAÇÃO DE BIBLIOTECAS
-import modelo.Apartamento;
-import modelo.Casa;
-import modelo.Terreno;
+import modelo.*;
 import util.InterfaceUsuario;
-import modelo.Financiamento;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Locale;
 
 //INICIO DA APLICAÇÃO
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DescontoMaiorDoQueJurosException {
 
         //CRIANDO A LISTA FINANCIAMENTOS
         List<Financiamento> financiamentos = new ArrayList<>();
@@ -23,13 +21,12 @@ public class Main {
         int  prazoFinanciamento = InterfaceUsuario.pedirPrazoFinanciamento();
         double taxaJurosAnual = InterfaceUsuario.pedirTaxaJuros();
 
-        //CRIANDO OS OBJETOS E ADICIONANDO NA LISTA FINANCIAMENTOS UTILIZANDO POLIMORFISMO
         financiamentos.add(new Casa(valorDaCasa, prazoFinanciamento,taxaJurosAnual, 60, 350));
         financiamentos.add(new Casa(300000, 15,10, 40, 250));
         financiamentos.add(new Apartamento(400000, 25, 8,1,8));
         financiamentos.add(new Apartamento(500000, 30, 5,2,6));
-        financiamentos.add(new Terreno(150000, 5, 11,"Residencial"));
-        financiamentos.add(new Terreno(350000, 15, 8,"Comercial"));
+        financiamentos.add(new Terreno(100, 5, 11,"Residencial"));
+        financiamentos.add(new Terreno(200, 15, 8,"Comercial"));
 
 
         //INICIANDO VARIÁVEIS

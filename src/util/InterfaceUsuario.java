@@ -1,70 +1,87 @@
 package util;
 
 //IMPORTAÇÃO DE BIBLIOTECAS
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 //CRIANDO CLASSE INTERFACE USUARIO
 public class InterfaceUsuario {
     private static Scanner scanner = new Scanner(System.in);
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 
     //METODO PARA PEDIR VALOR DO IMOVEL
     public static double pedirValorImovel() {
-        double valorImovel;
 
-        System.out.print("\nDigite o valor do imóvel: ");
-        valorImovel = scanner.nextDouble();
+        while (true) {
 
-        //LOOP WHILE PARA VALOR POSITIVO
-        while (valorImovel <= 0) {
-            System.out.println("\n*** Valor não aceito *** ");
-            System.out.println("\n*** Digite novamente ***");
+            try {
 
-            System.out.print("\nDigite o valor do imóvel: ");
-            valorImovel = scanner.nextDouble();
+                System.out.print("Digite o valor do imóvel: ");
+                double valor = scanner.nextDouble();
 
+                if (valor <= 0) {
+                    throw new Exception("O valor deve ser maior que zero.");
+                }
+                return valor;
+
+            } catch (InputMismatchException e) {
+                System.out.println("\nValor inválido. Certifique-se de inserir um valor válido.\n");
+                scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+                scanner.nextLine();
+            }
         }
-        return valorImovel;
     }
 
     //METODO PARA PEDIR PRAZO DE FINANCIAMENTO
     public static int pedirPrazoFinanciamento() {
         int prazoFinanciamento;
 
-        //LOOP DO-WHILE PARA VALIDAR VALOR POSITIVO
-        do {
-            System.out.print("\nEm quantos anos quer financiar? ");
-            prazoFinanciamento = scanner.nextInt();
+        while (true)
+            try {
+                System.out.print("Em quantos anos quer financiar? ");
+                prazoFinanciamento = scanner.nextInt();
 
+                if (prazoFinanciamento <= 0 || prazoFinanciamento >= 35) {
+                    throw new Exception("Prazo de financiamento não aceito.");
+                }
+                return prazoFinanciamento;
 
-            if (prazoFinanciamento <= 0) {
-                System.out.println("\n*** Prazo de financiamento não aceito *** ");
-                System.out.println("*** Digite novamente  ***");
-
-            } else if (prazoFinanciamento >= 36) {                   // NAO ACEITA VALOR MAIOR
-                System.out.println("\n*** Excede o prazo permitido *** ");
-                System.out.println("*** Digite novamente ***");
+            } catch (InputMismatchException e) {
+                System.out.println("\nValor inválido. Certifique-se de inserir um valor válido.\n");
+                scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+                scanner.nextLine();
             }
-
-        } while (prazoFinanciamento <= 0 || prazoFinanciamento >= 50);
-
-        return prazoFinanciamento;
     }
 
     //METODO PARA PEDIR TAXA DE JUROS
     public static double pedirTaxaJuros() {
         double taxaJuros;
 
-        for (; ; ) {
-            System.out.print("\nDigite a taxa de juros anual: ");
-            taxaJuros = scanner.nextDouble();
+        while (true) {
 
-            //IF PARA VALIDAR TAXA DE JUROS
-            if (taxaJuros > 0) {
-                break;
-            } else {
-                System.out.println("\n*** Taxa de juros inválida ***");
+            try {
+
+                System.out.print("Digite o valor da taxa de juros: ");
+                taxaJuros = scanner.nextDouble();
+
+                if (taxaJuros <= 0) {
+                    throw new Exception("O valor deve ser maior que zero.");
+                }
+                return taxaJuros;
+
+            } catch (InputMismatchException e) {
+                System.out.println("\nValor inválido. Certifique-se de inserir um valor válido.\n");
+                scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+                scanner.nextLine();
             }
         }
-        return taxaJuros;
     }
 }

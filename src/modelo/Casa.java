@@ -3,45 +3,62 @@ package modelo;
 //IMPORTAÇÃO DE BIBLIOTECAS
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Scanner;
 
 // CRIANDO A CLASSE CASA E EXTENDENDO PARA FINANCIAMENTO
 public class Casa extends Financiamento {
+    Scanner scanner = new Scanner(System.in);
 
-    private static final double descontoMaximo = 100.0;
-    private double descontoPorParcela;
-    private int parcelaAtual = 0;
     private int areaConstruida;
     private int tamanhoTerreno;
+    private double desconto = 100;
 
     //MÉTODO CONSTRUTOR DA CLASSE CASA INVOCANDO O CONSTRUTOR DA CLASSE PAI
-    public Casa(double valorDaCasa, int prazoFinanciamento, double taxaJurosAnual, int areaConstruida, int tamanhoTerreno) {
+    public Casa(double valorDaCasa, int prazoFinanciamento, double taxaJurosAnual, int areaConstruida, int tamanhoTerreno) throws DescontoMaiorDoQueJurosException{
         super(valorDaCasa, prazoFinanciamento, taxaJurosAnual);
         this.areaConstruida = areaConstruida;
         this.tamanhoTerreno = tamanhoTerreno;
-        calcularDescontoPorParcela();
+        setDesc(desconto);
     }
-
+    public void setDesc(double desconto) {
+        while (desconto > calcularJurosMensais()) {
+            try {
+                throw new DescontoMaiorDoQueJurosException("Erro: " + desconto);
+            } catch (DescontoMaiorDoQueJurosException e) {
+                // Trate a exceção aqui, por exemplo, exibindo uma mensagem de erro ou fazendo algo apropriado.
+                System.out.println("Erro: O desconto é maior do que os juros da mensalidade.");
+                // Peça novamente o valor do desconto
+                Scanner sc = new Scanner(System.in);
+                System.out.print("Digite um novo valor de desconto: ");
+                desconto = sc.nextDouble();
+            }
+        }
+        this.desconto = desconto;
+    }
     //GETTER PARA ATRIBUTO PRIVADO
     public int getAreaConstruida() {
-        return this.areaConstruida;
+        return areaConstruida;
     }
 
     //GETTER PARA ATRIBUTO PRIVADO
     public int getTamanhoTerreno() {
-        return this.tamanhoTerreno;
+        return tamanhoTerreno;
     }
 
-    //GETER PARA ATRIBUTO PRIVADO
-    public double getDescontoPorParcela() {
-        return descontoPorParcela;
+    public double getDesconto() {
+        return desconto;
     }
-
-    // METODO PARA CALCULAR PAGAMENTO MENSAL
+    // METODO PARA CALCULAR PAGAMENTO MENSAL COM DESCONTO
     public double calcularPagamentoMensal() {
         double taxaMensal = (getTaxaJurosAnual() / 12.0) / 100.0;
         int numeroPagamentos = getPrazoFinanciamento() * 12;
         double pagamentoMensal = getValorDaCasa() * (taxaMensal * Math.pow(1 + taxaMensal, numeroPagamentos)) /
                 (Math.pow(1 + taxaMensal, numeroPagamentos) - 1);
+
+        if (pagamentoMensal > getDesconto()) {
+            pagamentoMensal -= getDesconto();
+        }
+
         return pagamentoMensal;
     }
 
@@ -49,21 +66,23 @@ public class Casa extends Financiamento {
     public double calcularTotalPagamento(){
         return calcularPagamentoMensal() * getPrazoFinanciamento() * 12;
     }
+    public double calcularJurosMensais() {
+        double taxaMensal = (getTaxaJurosAnual() / 12.0) / 100.0;
+        int numeroPagamentos = getPrazoFinanciamento() * 12;
+        double valorParcela = calcularPagamentoMensal(); // Usando seu método existente
 
-    //MÉTODO PARA CALCULAR O DESCONTO POR PARCELA
-    private void calcularDescontoPorParcela() {
-        descontoPorParcela = Math.min(calcularPagamentoMensal(), descontoMaximo);
+        // Calculando o valor total pago durante o prazo do financiamento
+        double valorTotalPago = valorParcela * numeroPagamentos;
+
+        // Calculando o valor dos juros pagos
+        double jurosMensais = valorTotalPago - getValorDaCasa();
+
+        // Dividindo os juros mensais pelo número de meses
+        jurosMensais /= numeroPagamentos;
+
+        return jurosMensais;
     }
 
-    //MÉTODO PARA CALCULAR O VALOR DA PRÓXIMA PARCELA
-    public double calcularProximaParcelaComDesconto() {
-        parcelaAtual = parcelaAtual + 1;
-        double proximaParcela = calcularPagamentoMensal() - descontoPorParcela;
-        if (proximaParcela < 0) {
-            return 0;
-        }
-        return proximaParcela;
-    }
 
     //FORMATANDO PARA LINGUAGEM BR
     NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
@@ -75,8 +94,6 @@ public class Casa extends Financiamento {
                 "\nº Valor do financiamento: " + currencyFormat.format(calcularTotalPagamento()) +
                 "\nº Valor da taxa de juros: " + (getTaxaJurosAnual()) + "%" +
                 "\nº Valor da parcela: " + currencyFormat.format(calcularPagamentoMensal()) +
-                "\nº Desconto por parcela: " + currencyFormat.format(getDescontoPorParcela()) +
-                "\nº Próxima parcela com desconto: " + currencyFormat.format(calcularProximaParcelaComDesconto()) +
                 "\nº Tamanho da casa: " + getAreaConstruida() + " Metros quadrados" +
                 "\nº Tamanho do terreno: " + getTamanhoTerreno() + " Metros quadrados" +
                 "\nº Prazo de financiamento: " + getPrazoFinanciamento() + " anos";

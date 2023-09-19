@@ -42,11 +42,6 @@ public class Terreno extends Financiamento {
         return total;
     }
 
-    //MÉTODO PARA MOSTRAR O VALOR TOTAL SEM ACRÉSCIMO
-    public double calcularTotalPagamentoSemAcrescimo() {
-        return calcularTotalPagamento();
-    }
-
     //MÉTODO PARA ATRIBUTO
     public String tipo(){
         return zona;
@@ -62,7 +57,7 @@ public class Terreno extends Financiamento {
                 "\nº Valor do financiamento com acréscimo: " + currencyFormat.format(calcularAcrescimo()) +
                 "\nº Valor da taxa de juros: " + (getTaxaJurosAnual()) + "%" +
                 "\nº Valor da parcela: " + currencyFormat.format(calcularPagamentoMensal()) +
-                "\nº Valor do terreno sem acréscimo: " + currencyFormat.format(calcularTotalPagamentoSemAcrescimo()) +
+                "\nº Valor do terreno sem acréscimo: " + currencyFormat.format(calcularTotalPagamento()) +
                 "\nº Tipo de terreno: " + tipo() +
                 "\nº Prazo de financiamento: " + getPrazoFinanciamento() + " anos";
     }
