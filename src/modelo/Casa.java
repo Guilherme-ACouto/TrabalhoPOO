@@ -1,6 +1,7 @@
 package modelo;
 
 //IMPORTAÇÃO DE BIBLIOTECAS
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Scanner;
@@ -8,19 +9,22 @@ import util.InterfaceUsuario;
 import modelo.Financiamento;
 
 // CRIANDO A CLASSE CASA E EXTENDENDO PARA FINANCIAMENTO
-public class Casa extends Financiamento {
-    Scanner scanner = new Scanner(System.in);
+public class Casa extends Financiamento implements Serializable {
+
 
     private int areaConstruida;
     private int tamanhoTerreno;
     private double desconto = 100;
+    private transient Scanner scanner;
 
     //MÉTODO CONSTRUTOR DA CLASSE CASA INVOCANDO O CONSTRUTOR DA CLASSE PAI
     public Casa(double valorDaCasa, int prazoFinanciamento, double taxaJurosAnual, int areaConstruida, int tamanhoTerreno) throws DescontoMaiorDoQueJurosException{
         super(valorDaCasa, prazoFinanciamento, taxaJurosAnual);
         this.areaConstruida = areaConstruida;
         this.tamanhoTerreno = tamanhoTerreno;
+        this.scanner = new Scanner(System.in);
         setDesc(desconto);
+
     }
     //MÉTODO PARA VALIDAR SE O VALOR DO DESCONTO É MAIOR QUE TAXA DE JUROS MENSAL
     public void setDesc(double desconto) {

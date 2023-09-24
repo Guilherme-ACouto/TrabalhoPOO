@@ -1,11 +1,12 @@
 package modelo;
 
 //IMPORTAÇÃO DE BIBLIOTECAS
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Locale;
 
 // CRIANDO A CLASSE TERRENO E EXTENDENDO PARA FINANCIAMENTO
-public class Terreno extends Financiamento {
+public class Terreno extends Financiamento implements Serializable {
 
     protected String zona;
 

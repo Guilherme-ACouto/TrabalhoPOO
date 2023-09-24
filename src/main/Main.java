@@ -3,10 +3,13 @@ package main;
 //IMPORTAÇÃO DE BIBLIOTECAS
 import modelo.*;
 import util.InterfaceUsuario;
+import java.io.Writer;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import Dados.ArquivoTexto;
+import Dados.ArquivoSerializado;
 
 //INICIO DA APLICAÇÃO
 public class Main {
@@ -27,7 +30,23 @@ public class Main {
         financiamentos.add(new Terreno(100, 5, 11,"Residencial"));
         financiamentos.add(new Terreno(200, 15, 8,"Comercial"));
 
-        //FORMATANDO PARA LINGUAGEM BR
+        ArquivoTexto.salvarDadosEmArquivoTexto((ArrayList<Financiamento>) financiamentos, "DadosFinanciamentos.txt");
+
+        ArquivoSerializado.salvarListaSerializada((ArrayList<Financiamento>) financiamentos,"DadosFinanciamentos.ser");
+
+        ArrayList<Financiamento> financiamentosLidos = ArquivoTexto.lerDadosDeArquivoTexto("DadosFinanciamentos.txt");
+
+        for (Financiamento financiamento : financiamentosLidos) {
+            System.out.println(financiamento);
+        }
+
+        ArrayList<Financiamento> listaSerializada = ArquivoSerializado.lerListaSerializada("DadosFinanciamentos.ser");
+
+        for (Financiamento financiamento : listaSerializada) {
+            System.out.println(financiamento);
+        }
+
+            //FORMATANDO PARA LINGUAGEM BR
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
 
         double totalImoveis = 0;

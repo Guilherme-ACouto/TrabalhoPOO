@@ -1,11 +1,12 @@
 package modelo;
 
 //IMPORTAÇÃO DE BIBLIOTECAS
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Locale;
 
 // CRIANDO A CLASSE APARTAMENTO E EXTENDENDO PARA FINANCIAMENTO
-public class Apartamento extends Financiamento {
+public class Apartamento extends Financiamento implements Serializable {
     protected int vagasGaragem;
     protected int numeroAndar;
 
