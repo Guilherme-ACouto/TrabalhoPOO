@@ -1,39 +1,38 @@
 package Dados;
 
 import modelo.Financiamento;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.io.BufferedWriter;
-import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class ArquivoTexto {
-
-    public static void salvarDadosEmArquivoTexto(ArrayList<Financiamento> financiamentos, String DadosArquivo) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(DadosArquivo))) {
+    public static void salvarDados(ArrayList<Financiamento> financiamentos) throws IOException {
+        FileWriter out;
+        try {
+            out = new FileWriter("DadosFinanciamento.txt");
             for (Financiamento financiamento : financiamentos) {
-                writer.write(financiamento.toString());
-                writer.newLine(); // Pular para a próxima linha
+                out.write(financiamento.toString() + "\n");
             }
-            System.out.println("\nDados de financiamentos salvos em " + DadosArquivo);
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("\nSua lista foi salva com sucesso");
+            out.close();
+        }catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public static ArrayList<Financiamento> lerDadosDeArquivoTexto(String DadosArquivo) {
-        ArrayList<Financiamento> financiamentos = new ArrayList<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(DadosArquivo))) {
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-            }
-            System.out.println("\nDados de financiamentos lidos em " + DadosArquivo);
-        } catch (IOException e) {
-            e.getMessage();
+    public static void lerDados(ArrayList<Financiamento> financiamentos) throws IOException {
+        FileReader in;
+        try {
+            System.out.println("\n\nAbrindo leitura do arquivo:");
+            in = new FileReader("DadosFinanciamento.txt");
+            int c;
+            while ((c = in.read()) != -1)
+                System.out.print((char)c);
+            in.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
-
-        return financiamentos;
     }
 }

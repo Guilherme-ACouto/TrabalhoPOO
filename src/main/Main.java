@@ -10,13 +10,16 @@ import java.util.List;
 import java.util.Locale;
 import Dados.ArquivoTexto;
 import Dados.ArquivoSerializado;
+import java.io.IOException;
+import static Dados.ArquivoTexto.lerDados;
+import static Dados.ArquivoTexto.salvarDados;
 
 //INICIO DA APLICAÇÃO
 public class Main {
-    public static void main(String[] args) throws DescontoMaiorDoQueJurosException {
+    public static void main(String[] args) throws DescontoMaiorDoQueJurosException, IOException {
 
         //CRIANDO A LISTA FINANCIAMENTOS
-        List<Financiamento> financiamentos = new ArrayList<>();
+        ArrayList<Financiamento> financiamentos = new ArrayList<>();
 
         //COLETANDO VALORES DIGITADOS PELO USUÁRIO ATRAVÉS DO METODO SCANNER NA CLASSE INTERFACE USUÁRIO
         double valorDaCasa = InterfaceUsuario.pedirValorImovel();
@@ -30,37 +33,31 @@ public class Main {
         financiamentos.add(new Terreno(100, 5, 11,"Residencial"));
         financiamentos.add(new Terreno(200, 15, 8,"Comercial"));
 
-        ArquivoTexto.salvarDadosEmArquivoTexto((ArrayList<Financiamento>) financiamentos, "DadosFinanciamentos.txt");
+       salvarDados(financiamentos);
 
-        ArquivoSerializado.salvarListaSerializada((ArrayList<Financiamento>) financiamentos,"DadosFinanciamentos.ser");
+        ArquivoSerializado.salvarListaSerializada(financiamentos, "DadosFinanciamentos.ser");
 
-        ArrayList<Financiamento> financiamentosLidos = ArquivoTexto.lerDadosDeArquivoTexto("DadosFinanciamentos.txt");
+        String listaSerializada = String.valueOf(ArquivoSerializado.lerListaSerializada("DadosFinanciamentos.ser"));
 
-        for (Financiamento financiamento : financiamentosLidos) {
-            System.out.println(financiamento);
-        }
-
-        ArrayList<Financiamento> listaSerializada = ArquivoSerializado.lerListaSerializada("DadosFinanciamentos.ser");
-
-        for (Financiamento financiamento : listaSerializada) {
-            System.out.println(financiamento);
-        }
-
-            //FORMATANDO PARA LINGUAGEM BR
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
 
         double totalImoveis = 0;
         double totalFinanciamentos = 0;
 
         //FOR PARA PERCORRER A LISTA
-        for (Financiamento lista : financiamentos) {
-            System.out.println(lista);
-
-            totalImoveis += lista.getValorDaCasa();                 //VARIÁVEL RECEBENDO OS VALORES TOTAIS DOS IMÓVEIS
-            totalFinanciamentos += lista.calcularTotalPagamento();  //VARIÁVEL RECEBENDO OS VALORES TOTAIS DOS FINANCIAMENTOS
+        for (Financiamento financiamento : financiamentos) {
+            System.out.println(financiamento.toString());
+            totalImoveis += financiamento.getValorDaCasa();                 //VARIÁVEL RECEBENDO OS VALORES TOTAIS DOS IMÓVEIS
+            totalFinanciamentos += financiamento.calcularTotalPagamento();  //VARIÁVEL RECEBENDO OS VALORES TOTAIS DOS FINANCIAMENTOS
         }
         //IMPRIME VALOR TOTAL DOS IMOVEIS E TOTAL DOS FINANCIAMENTOS
         System.out.println("\nValor total de todos os imóveis: " + currencyFormat.format(totalImoveis));
         System.out.println("Valor total de todos os financiamentos: " + currencyFormat.format(totalFinanciamentos));
+
+        lerDados(financiamentos);
+        System.out.println("\nLendo lista serelizada:");
+        System.out.println(listaSerializada);
+
     }
+
 }
