@@ -26,6 +26,7 @@ public class Main {
         int  prazoFinanciamento = InterfaceUsuario.pedirPrazoFinanciamento();
         double taxaJurosAnual = InterfaceUsuario.pedirTaxaJuros();
 
+        //CRIANDO OS OBJETOS DE FINANCIAMENTO
         financiamentos.add(new Casa(valorDaCasa, prazoFinanciamento,taxaJurosAnual, 60, 350));
         financiamentos.add(new Casa(300000, 15,10, 40, 250));
         financiamentos.add(new Apartamento(400000, 25, 8,1,8));
@@ -33,17 +34,17 @@ public class Main {
         financiamentos.add(new Terreno(100, 5, 11,"Residencial"));
         financiamentos.add(new Terreno(200, 15, 8,"Comercial"));
 
-       salvarDados(financiamentos);
-
+        //SALVANDO DADOS NA LISTA TXT
+        salvarDados(financiamentos);
+        //SALVANDOI DADOS NA LISTA SERIALIZADA
         ArquivoSerializado.salvarListaSerializada(financiamentos, "DadosFinanciamentos.ser");
-
+        //LENDO O ARQUIVO SERIALIZADO
         String listaSerializada = String.valueOf(ArquivoSerializado.lerListaSerializada("DadosFinanciamentos.ser"));
 
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR")); //FORMATANDO PARA BR
 
         double totalImoveis = 0;
         double totalFinanciamentos = 0;
-
         //FOR PARA PERCORRER A LISTA
         for (Financiamento financiamento : financiamentos) {
             System.out.println(financiamento.toString());
@@ -54,10 +55,9 @@ public class Main {
         System.out.println("\nValor total de todos os imóveis: " + currencyFormat.format(totalImoveis));
         System.out.println("Valor total de todos os financiamentos: " + currencyFormat.format(totalFinanciamentos));
 
+        //IMPRIMINDO EM TELA ARQUIVO TXT E ARQUIVO SERIALIZADO
         lerDados(financiamentos);
         System.out.println("\nLendo lista serelizada:");
         System.out.println(listaSerializada);
-
     }
-
 }

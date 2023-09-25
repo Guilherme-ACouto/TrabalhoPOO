@@ -1,0 +1,60 @@
+
+Casa
+º Valor da casa: R$ 200.000,00
+º Valor do financiamento: R$ 555.539,85
+º Valor da taxa de juros: 13.5%
+º Valor da parcela: R$ 2.314,75
+º Tamanho da casa: 60 Metros quadrados
+º Tamanho do terreno: 350 Metros quadrados
+º Prazo de financiamento: 20 anos
+
+Casa
+º Valor da casa: R$ 300.000,00
+º Valor do financiamento: R$ 562.286,76
+º Valor da taxa de juros: 10.0%
+º Valor da parcela: R$ 3.123,82
+º Tamanho da casa: 40 Metros quadrados
+º Tamanho do terreno: 250 Metros quadrados
+º Prazo de financiamento: 15 anos
+
+Apartamento
+º Valor do Apartamento: R$ 400.000,00
+º Valor do financiamento: R$ 926.179,46
+º Valor da taxa de juros: 8.0%
+º Valor da parcela: R$ 3.087,26
+º (1ª) Parcela com desconto: R$ 2.932,90
+º (2ª) Parcela com desconto: R$ 3.010,08
+º (3ª) Parcela com desconto: R$ 3.071,83
+º Vagas de garagem: 1 vagas
+º Andar: 8º
+º Prazo de financiamento: 25 anos
+
+Apartamento
+º Valor do Apartamento: R$ 500.000,00
+º Valor do financiamento: R$ 966.278,92
+º Valor da taxa de juros: 5.0%
+º Valor da parcela: R$ 2.684,11
+º (1ª) Parcela com desconto: R$ 2.549,90
+º (2ª) Parcela com desconto: R$ 2.617,01
+º (3ª) Parcela com desconto: R$ 2.670,69
+º Vagas de garagem: 2 vagas
+º Andar: 6º
+º Prazo de financiamento: 30 anos
+
+Terreno
+º Valor do terreno: R$ 100,00
+º Valor do financiamento com acréscimo: R$ 133,06
+º Valor da taxa de juros: 11.0%
+º Valor da parcela: R$ 2,17
+º Valor do terreno sem acréscimo: R$ 130,45
+º Tipo de terreno: Residencial
+º Prazo de financiamento: 5 anos
+
+Terreno
+º Valor do terreno: R$ 200,00
+º Valor do financiamento com acréscimo: R$ 350,92
+º Valor da taxa de juros: 8.0%
+º Valor da parcela: R$ 1,91
+º Valor do terreno sem acréscimo: R$ 344,03
+º Tipo de terreno: Comercial
+º Prazo de financiamento: 15 anos

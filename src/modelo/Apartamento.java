@@ -39,10 +39,8 @@ public class Apartamento extends Financiamento implements Serializable {
         } else if (numeroParcela == 3) {
             taxaDesconto = 0.5;
         }
-
         double descontoPorParcela = calcularPagamentoMensal() * taxaDesconto / 100.0;
         double proximaParcela = calcularPagamentoMensal() - descontoPorParcela;
-
         return proximaParcela;
     }
     //MÉTODO PARA ATRIBUTO

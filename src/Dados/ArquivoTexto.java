@@ -7,7 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//CRIANDO A CLASSE ARQUIVO TEXTO
 public class ArquivoTexto {
+    //METODO PARA SALVAR LISTA TXT
     public static void salvarDados(ArrayList<Financiamento> financiamentos) throws IOException {
         FileWriter out;
         try {
@@ -21,7 +23,7 @@ public class ArquivoTexto {
             System.out.println(e.getMessage());
         }
     }
-
+    //METODO PARA LER DADOS SERIALIZADOS
     public static void lerDados(ArrayList<Financiamento> financiamentos) throws IOException {
         FileReader in;
         try {

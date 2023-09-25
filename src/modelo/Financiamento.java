@@ -1,14 +1,15 @@
 package modelo;
 
+//IMPORTAÇAO DE BIBLIOTECAS
 import java.io.Serializable;
 
-// CRIÇÃO DA CLASSE FINANCIAMENTO E SEUS ATRIBUTOS
+//CRIÇÃO DA CLASSE FINANCIAMENTO E SEUS ATRIBUTOS
 public abstract class Financiamento implements Serializable{
     private double valorDaCasa;
     private int prazoFinanciamento;
     private double taxaJurosAnual;
 
-    // METODO CONSTRUTOR DA CLASSE FINANCIAMENTO
+    //METODO CONSTRUTOR DA CLASSE FINANCIAMENTO
     public Financiamento(double casa, int prazoFinanciamento, double taxaJurosAnual) {
         valorDaCasa = casa;
         this.prazoFinanciamento = prazoFinanciamento;
@@ -29,12 +30,12 @@ public abstract class Financiamento implements Serializable{
     public void setTaxaJurosAnual(double taxaJurosAnual) {
         this.taxaJurosAnual = taxaJurosAnual;
     }
-    // METODO ABSTRADO
+    //METODO ABSTRADO
     public abstract double calcularPagamentoMensal();
 
-    // METODO ABSTRATO
+    //METODO ABSTRATO
     public abstract double calcularTotalPagamento();
 
-    // Na classe Financiamento
+    //METODO ABSTRATO
     public abstract String toString();
 }

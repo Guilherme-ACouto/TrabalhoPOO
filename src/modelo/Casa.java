@@ -8,7 +8,7 @@ import java.util.Scanner;
 import util.InterfaceUsuario;
 import modelo.Financiamento;
 
-// CRIANDO A CLASSE CASA E EXTENDENDO PARA FINANCIAMENTO
+//CRIANDO A CLASSE CASA E EXTENDENDO PARA FINANCIAMENTO
 public class Casa extends Financiamento implements Serializable {
 
 
@@ -29,7 +29,7 @@ public class Casa extends Financiamento implements Serializable {
     //MÉTODO PARA VALIDAR SE O VALOR DO DESCONTO É MAIOR QUE TAXA DE JUROS MENSAL
     public void setDesc(double desconto) {
         double parcelaMensal = calcularPagamentoMensal();
-
+        //INICIO DO BLOCO TRY / CATCH
         while (desconto > calcularJurosMensais()) {
             try {
                 throw new DescontoMaiorDoQueJurosException("O desconto é maior do que os juros da mensalidade.");
